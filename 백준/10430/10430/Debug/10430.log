@@ -1,0 +1,5 @@
+﻿  소스.c
+C:\Users\d0003\Desktop\백준\10430\10430\소스.c(10,23): warning C4013: 'malloc'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\d0003\Desktop\백준\10430\10430\소스.c(16,16): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int *'입니다.
+C:\Users\d0003\Desktop\백준\10430\10430\소스.c(31,9): warning C4013: 'free'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  10430.vcxproj -> C:\Users\d0003\Desktop\백준\10430\Debug\10430.exe
