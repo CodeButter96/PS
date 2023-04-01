@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -37,27 +35,23 @@ public class Main {
     static int check(){
         int drop = Integer.MAX_VALUE;
         for(int y=0;y<S;y++){
-            if(drop==0){break;}
-            for(int x=R-3;x>=0;x--){
+            int bottom = Integer.MIN_VALUE;
+            int ground = Integer.MAX_VALUE;
+            for(int x=0;x<R;x++){
                 if(pic[x][y]=='X'){
-                    int nx = x+1;
-                    while(true){
-                        if(pic[nx][y]=='.'){
-                            nx++;
-                        }else{
-                            break;
-                        }
-                    }
-                    int cnt = nx - x - 1;
-                    drop = Math.min(drop,cnt);
+                    bottom = x;
+                }else if(pic[x][y]=='#'){
+                    ground = x;
                     break;
                 }
             }
+            drop = Math.min(drop,ground - bottom - 1);
         }
         return drop;
     }
 
     static void drop(int num){
+        if(num==0){return;}
         for(int y=0;y<S;y++){
             for(int x=R-2;x>=0;x--){
                 if(pic[x][y]=='X'){
