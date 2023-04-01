@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,9 +16,7 @@ public class Main {
         pic = new char[R][S];
         for(int i=0;i<R;i++){
             String s = br.readLine();
-            for(int j=0;j<S;j++){
-                pic[i] = s.toCharArray();
-            }
+            pic[i] = s.toCharArray();
         }
 
         drop(check());
@@ -37,21 +33,20 @@ public class Main {
     static int check(){
         int drop = Integer.MAX_VALUE;
         for(int y=0;y<S;y++){
-            if(drop==0){break;}
-            for(int x=R-3;x>=0;x--){
+            boolean hasStar = false;
+            int starEnd = 0;
+            int ground = 0;
+            for(int x=0;x<R;x++){
                 if(pic[x][y]=='X'){
-                    int nx = x+1;
-                    while(true){
-                        if(pic[nx][y]=='.'){
-                            nx++;
-                        }else{
-                            break;
-                        }
-                    }
-                    int cnt = nx - x - 1;
-                    drop = Math.min(drop,cnt);
+                    starEnd = x;
+                    hasStar = true;
+                }else if(pic[x][y]=='#'){
+                    ground = x;
                     break;
                 }
+            }
+            if(hasStar){
+                drop = Math.min(drop,ground - starEnd - 1);
             }
         }
         return drop;
