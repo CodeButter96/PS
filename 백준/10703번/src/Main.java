@@ -16,9 +16,7 @@ public class Main {
         pic = new char[R][S];
         for(int i=0;i<R;i++){
             String s = br.readLine();
-            for(int j=0;j<S;j++){
-                pic[i] = s.toCharArray();
-            }
+            pic[i] = s.toCharArray();
         }
 
         drop(check());
@@ -35,17 +33,21 @@ public class Main {
     static int check(){
         int drop = Integer.MAX_VALUE;
         for(int y=0;y<S;y++){
-            int bottom = Integer.MIN_VALUE;
-            int ground = Integer.MAX_VALUE;
+            boolean hasStar = false;
+            int starEnd = 0;
+            int ground = 0;
             for(int x=0;x<R;x++){
                 if(pic[x][y]=='X'){
-                    bottom = x;
+                    starEnd = x;
+                    hasStar = true;
                 }else if(pic[x][y]=='#'){
                     ground = x;
                     break;
                 }
             }
-            drop = Math.min(drop,ground - bottom - 1);
+            if(hasStar){
+                drop = Math.min(drop,ground - starEnd - 1);
+            }
         }
         return drop;
     }
